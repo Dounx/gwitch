@@ -23,7 +23,7 @@ module Gwitch
         queries = {
           country: country,
           lang: lang,
-          ids: ids,
+          ids: ids
         }
 
         uri = URI.parse(api_url)
