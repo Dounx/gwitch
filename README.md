@@ -73,4 +73,4 @@ gem install --local gwitch-0.0.1.gem
 
 ## License
 
-Gwitch is an open-sourced software licensed under the [MIT license](LICENSE.md).
+Gwitch is an open-sourced software licensed under the [MIT license](LICENSE).
