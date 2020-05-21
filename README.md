@@ -1,5 +1,3 @@
-# NOTE: DON'T use this gem for now, It should be released next week.
-
 # Gwitch
 
 Gwitch can get switch games info (including price) from nintendo official API.
