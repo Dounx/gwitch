@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.author   = "Dounx"
   s.email    = "imdounx@gmail.com"
-  s.homepage = "https://blog.dounx.me"
+  s.homepage = "https://github.com/dounx/gwitch"
 
   s.require_paths = ["lib"]
   s.files = Dir["CHANGELOG.md", "LICENSE", "README.md", "lib/**/*"]
