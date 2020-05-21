@@ -4,7 +4,7 @@ require 'open-uri'
 require 'json'
 
 module Gwitch
-  class Shop
+  class Region
 
     # A class which get games from asia eshop.
     class Asia
@@ -57,6 +57,7 @@ module Gwitch
 
             {
               nsuid: game['nsuid'],
+              code: game['icode'],
               title: game['title'],
               description: game['text'],
               categories: game['genre'],
@@ -64,7 +65,8 @@ module Gwitch
               player: game['player']&.first,
               languages: game['lang'],
               modes: modes,
-              image: image_urls,
+              dlcs: game['cnsuid'] || [],
+              images: image_urls,
               url: url,
               release_at: game['pdate']
             }

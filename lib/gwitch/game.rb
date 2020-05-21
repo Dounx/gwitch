@@ -1,34 +1,42 @@
 # frozen_string_literal: true
 
-require_relative 'shop'
+require_relative 'region'
 
 module Gwitch
   class Game
+    IdsExceedMaxError = Class.new(StandardError)
+
     class << self
       def all(area = nil)
         case area
-        when :americas
-          Shop::Americas.games
-        when :asia
-          Shop::Asia.games
-        when :europe
-          Shop::Europe.games
+        when 'Americas'
+          Region::Americas.games
+        when 'Asia'
+          Region::Asia.games
+        when 'Europe'
+          Region::Europe.games
         else
-          Shop.games
+          Region.games
         end
       end
 
-      def price(country, lang, ids)
+      # ids can be String or Array
+      def price(alpha2, ids, lang = 'en')
+        raise IdsExceedMaxError if ids.is_a?(Array) && ids.size > 50
+
         api_url = 'https://api.ec.nintendo.com/v1/price'
         queries = {
-          country: country,
+          country: alpha2,
           lang: lang,
           ids: ids
         }
 
         uri = URI.parse(api_url)
         uri.query = URI.encode_www_form(queries)
+
         JSON.parse(uri.read)
+      rescue OpenURI::HTTPError
+        nil
       end
     end
   end

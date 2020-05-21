@@ -4,7 +4,7 @@ require 'open-uri'
 require 'json'
 
 module Gwitch
-  class Shop
+  class Region
 
     # A class which get games from europe eshop.
     class Europe
@@ -41,6 +41,9 @@ module Gwitch
           schema = 'https:'
 
           raw.map do |game|
+            code = game['product_code_txt']&.first
+            code = code[4..8] if code
+
             modes = []
             modes << 'TV' if game['play_mode_tv_mode_b']
             modes << 'TABLETOP' if game['play_mode_tabletop_mode_b']
@@ -49,10 +52,11 @@ module Gwitch
             url = game['url'] ? host + game['url'] : nil
 
             {
-              nsuid: game['nsuid_txt'],
-              title: game['title_extras_txt'],
+              nsuid: game['nsuid_txt'] || [],
+              code: code,
+              title: game['title'],
               description: game['excerpt'],
-              categories: game['pretty_game_categories_txt'],
+              categories: game['pretty_game_categories_txt'] || [],
               maker: game['publisher'],
               player: game['players_to'],
               languages: game['language_availability']&.first&.split(',') || [],
@@ -70,7 +74,7 @@ module Gwitch
                 schema + game['wishlist_email_banner640w_image_url_s']
               ],
               url: url,
-              release_at: game['dates_released_dts']
+              release_at: game['dates_released_dts']&.first
             }
           end
         end

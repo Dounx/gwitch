@@ -3,7 +3,7 @@
 require 'algoliasearch'
 
 module Gwitch
-  class Shop
+  class Region
 
     # A class which get games from americas eshop.
     class Americas
@@ -83,37 +83,45 @@ module Gwitch
         def parse(raw)
           host = 'https://www.nintendo.com'
           microsite_host = 'https://assets.nintendo.com/image/upload/f_auto,q_auto,w_960,h_540'
+          legacy_host = 'https://assets.nintendo.com/video/upload/f_auto,q_auto,w_960,h_540'
           asset_host = 'https://assets.nintendo.com/image/upload/f_auto,q_auto,w_960,h_540/Legacy%20Videos/posters/'
 
           raw.map do |game|
-            # gallery_path = game['gallery']
-            # gallery_url =
-            #   if gallery_path.nil?
-            #     nil
-            #   # Begin with '/'
-            #   elsif gallery_path[0] == '/'
-            #     # If prefix is 'content'
-            #     if gallery_path[1] == 'c'
-            #       host + gallery_path
-            #     # Prefix is 'Nintendo' or 'Microsites'
-            #     elsif gallery_path[1] == 'N' || gallery_path[1] == 'M'
-            #       url = microsite_host + gallery_path
-            #       last_slash = url.rindex('/')
-            #       url.insert(last_slash + 1, 'posters/')
-            #     # Prefix is 'Legacy Videos'
-            #     elsif gallery_path[1] == 'L'
-            #       microsite_host + gallery_path + '.jpg'
-            #     else
-            #       raise GalleryParsedError
-            #     end
-            #   # Just id
-            #   else
-            #     asset_host + gallery_path
-            #   end
-
             image_urls = []
             image_urls << (host + game['boxArt']) if game['boxArt']
-            # image_urls << gallery_url if gallery_url
+
+            gallery_path = game['gallery']
+            if gallery_path.nil?
+              nil
+            # Begin with '/'
+            elsif gallery_path[0] == '/'
+              # If prefix is 'content'
+              if gallery_path[1] == 'c'
+                image_urls << host + gallery_path
+              # Prefix is 'Microsites'
+              # Just one game
+              elsif  gallery_path[1] == 'M'
+                url = microsite_host + gallery_path
+                last_slash = url.rindex('/')
+                image_urls << url.insert(last_slash + 1, 'posters/')
+              # Prefix is 'Nintendo'
+              elsif gallery_path[1] == 'N'
+                # TODO Nintendo* url have many situations
+                # https://assets.nintendo.com/image/upload/f_auto,q_auto,w_960,h_540/Nintendo Switch/Games/Third Party/Overcooked 2/Video/posters/Overcooked_2_Gourmet_Edition_Trailer
+                # /Nintendo Switch/Games/Third Party/Overcooked 2/Video/Overcooked_2_Gourmet_Edition_Trailer
+
+                # https://assets.nintendo.com/video/upload/f_auto,q_auto,w_960,h_540/Nintendo Switch/Games/NES and Super NES/Video/NES_Super_NES_May_2020_Game_Updates_Nintendo_Switch_Online
+                # /Nintendo Switch/Games/NES and Super NES/Video/NES_Super_NES_May_2020_Game_Updates_Nintendo_Switch_Online
+              # Prefix is 'Legacy Videos'
+              elsif gallery_path[1] == 'L'
+                image_urls << legacy_host + gallery_path
+              else
+                raise GalleryParsedError
+              end
+            # Just id
+            else
+              image_urls << asset_host + gallery_path
+            end
 
             url = game['url'] ? host + game['url'] : nil
 
