@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.metadata = {
     "bug_tracker_uri"   => "https://github.com/dounx/gwitch/issues",
-    "changelog_uri"     => "https://github.com/dounx/gwitch/blob/master/CHANGELOG",
+    "changelog_uri"     => "https://github.com/dounx/gwitch/blob/master/CHANGELOG.md",
     "documentation_uri" => "https://github.com/dounx/gwitch/blob/master/README.md",
     "source_code_uri"   => "https://github.com/dounx/gwitch",
   }
