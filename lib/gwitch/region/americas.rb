@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'algoliasearch'
+require "algoliasearch"
 
 module Gwitch
   class Region

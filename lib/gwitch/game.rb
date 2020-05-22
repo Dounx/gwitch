@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-require_relative 'region'
+require_relative "region"
 
 module Gwitch
   class Game
     IdsExceedMaxError = Class.new(StandardError)
 
     class << self
+      # Get all game or one of them
       def all(area = nil)
         case area
         when 'Americas'

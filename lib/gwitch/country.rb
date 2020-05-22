@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'countries'
-require_relative 'game'
+require "countries"
+require_relative "game"
 
 module Gwitch
   class Country
@@ -12,8 +12,6 @@ module Gwitch
           avaliable?(alpha2)
         end.map { |alpha2| Country.new(alpha2) }
       end
-
-      private
 
       def avaliable?(alpha2)
         # An americas game

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'region/americas'
-require_relative 'region/asia'
-require_relative 'region/europe'
+require_relative "region/americas"
+require_relative "region/asia"
+require_relative "region/europe"
 
 module Gwitch
   
