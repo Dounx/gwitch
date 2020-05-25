@@ -24,21 +24,37 @@ And then execute:
 
 ## Basic Usage
 
+### Bash
+
+```
+Usage: gwitch [options]
+    -g, --games                      Get all games (without price info)
+    -p, --price alpha2,nsuid1,nsuid2 Get games' price (Max 50 nsuids)
+    -c, --countries                  Get avaliable countries' alpha2 code
+    -v, --version                    Print version and exit
+    -h, --help                       Show help
+```
+
+The returned data will always be in json format.
+
+Can be used with pipes and redirects.
+
+eg.
+
+```bash
+gwitch -g >> games.json
+```
+
+### Ruby
+
 ```ruby
 require 'gwitch'
 ```
 
-Get all games from americas, asia and europe eshops.
+Get all games.
 
 ```ruby
 games = Gwitch::Game.all
-```
-
-Get all games from one eshops.
-
-```ruby
-# Americas, Asia and Europe
-games = Gwitch::Game.all('Americas')
 ```
 
 Get all avaliable countries.
@@ -50,16 +66,17 @@ countries = Gwitch::Country.all
 Get country's info.
 
 ```ruby
-country = Gwitch::Country.new('US')
-country.alpha2   # => 'US'
-country.region   # => 'Americas'
-country.currency # => 'USD'
+country = countries.first
+country.alpha2     # => 'US'
+country.region     # => 'Americas'
+country.currency   # => 'USD'
+country.avaliable? # => true
 ```
 
-Query game's price.
+Query games' price (Max 50 games).
 
 ```ruby
-price = Gwitch::Game.price('US', 'en', '70010000000141')
+prices = Gwitch::Game.price('US', 'en', '70010000000141,70010000000142')
 ```
 
 ## Build
@@ -68,7 +85,15 @@ price = Gwitch::Game.price('US', 'en', '70010000000141')
 git clone https://github.com/Dounx/gwitch
 cd gwitch
 gem build gwitch.gemspec
-gem install --local gwitch-0.0.1.gem
+gem install --local gwitch-*.gem
+```
+
+## Rake
+
+List of available tasks
+
+```bash
+rake --tasks
 ```
 
 ## License

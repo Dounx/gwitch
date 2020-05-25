@@ -13,7 +13,6 @@ module Gwitch
         Region.games
       end
 
-      # ids can be String or Array
       def price(alpha2, ids, lang = 'en')
         raise IdsExceedMaxError if ids.is_a?(Array) && ids.size > MAX_IDS
 
