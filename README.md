@@ -1,6 +1,6 @@
 # Gwitch
 
-Gwitch can get switch games info (including price) from nintendo official API.
+Gwitch can get switch games' info (including price) from nintendo official API.
 
 ## Prerequisites
 
@@ -77,6 +77,10 @@ Query games' price (Max 50 games).
 
 ```ruby
 prices = Gwitch::Game.price('US', 'en', '70010000000141,70010000000142')
+
+prices = Gwitch::Game.price('US', 'en', ['70010000000141', '70010000000142'])
+
+prices = Gwitch::Game.price('US', 'en', [70010000000141, 70010000000142])
 ```
 
 ## Build

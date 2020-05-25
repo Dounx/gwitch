@@ -5,8 +5,8 @@ require File.join(File.dirname(__FILE__), 'lib', 'gwitch', 'version')
 Gem::Specification.new do |s|
   s.name        = "gwitch"
   s.version     = Gwitch::VERSION
-  s.summary     = "Nintendo switch game API."
-  s.description = "Gwitch can get switch games info (including price) from nintendo official API."
+  s.summary     = "Nintendo switch games' info API."
+  s.description = "Gwitch can get switch games' info (including price) from nintendo official API."
 
   s.required_ruby_version     = ">= 2.3.0"
 
