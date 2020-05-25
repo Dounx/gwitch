@@ -1,6 +1,6 @@
 # Gwitch
 
-Gwitch can get switch games' info (including price) from nintendo official API.
+Gwitch can get switch games' info (including price) from Nintendo official API.
 
 ## Prerequisites
 
