@@ -58,7 +58,7 @@ namespace :gwitch do
 
     File.open(GEM_VERSION_FILE, 'w') do |file|
       file.write <<~SEMVER
-        module Algolia
+        module Gwitch
           VERSION = "#{args[:version]}"
         end
       SEMVER

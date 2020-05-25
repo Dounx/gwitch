@@ -1,3 +1,3 @@
-module Algolia
+module Gwitch
   VERSION = "1.0.0"
 end
