@@ -18,7 +18,7 @@ class TestGame < Minitest::Test
 
   def test_price
     alpha2 = 'US'
-    nsuid = '70010000000141'
+    nsuid = '70010000000141,70010000000142'
 
     refute_nil Gwitch::Game.price(alpha2, nsuid)
   end
