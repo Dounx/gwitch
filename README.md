@@ -2,7 +2,7 @@
 
 Gwitch can get switch games' info (including price) from Nintendo official API.
 
-[中文说明](README-zh.md) | [RubyGem](https://rubygems.org/gems/gwitch)
+[中文说明](README-zh.md) | [RubyGems](https://rubygems.org/gems/gwitch)
 
 ## Prerequisites
 

@@ -2,7 +2,7 @@
 
 Gwitch 可以获取任天堂 Switch 上的所有游戏信息，包括价格查询以及查询开通了 e-shop 的国家。
 
-[Readme](README.md) | [RubyGem](https://rubygems.org/gems/gwitch)
+[Readme](README.md) | [RubyGems](https://rubygems.org/gems/gwitch)
 
 ## 依赖
 
