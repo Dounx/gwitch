@@ -14,7 +14,6 @@ module Gwitch
     private
 
     def setup_options(args)
-      # parse CLI options
       parse_options(args)
     end
 

@@ -5,8 +5,6 @@ require "json"
 
 module Gwitch
   class Region
-
-    # A class which get games from asia eshop.
     class Asia
       API_URL = 'https://search.nintendo.jp/nintendo_soft/search.json'
       QUERIES = {
@@ -17,7 +15,6 @@ module Gwitch
       }.freeze
 
       class << self
-        # Get all games from asia eshop.
         def games
           games = []
           uri = URI.parse(API_URL)
@@ -66,6 +63,7 @@ module Gwitch
               languages: game['lang'],
               modes: modes,
               dlcs: game['cnsuid'] || [],
+              region: 'Asia',
               images: image_urls,
               url: url,
               release_at: game['pdate']

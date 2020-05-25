@@ -5,8 +5,6 @@ require "json"
 
 module Gwitch
   class Region
-
-    # A class which get games from europe eshop.
     class Europe
       RowsTooSmallError = Class.new(StandardError)
 
@@ -23,7 +21,6 @@ module Gwitch
       }.freeze
 
       class << self
-        # Get all games from asia eshop.
         def games
           uri = URI.parse(API_URL)
           uri.query = URI.encode_www_form(QUERIES)
@@ -62,6 +59,7 @@ module Gwitch
               languages: game['language_availability']&.first&.split(',') || [],
               modes: modes,
               cloud_save: game['cloud_saves_b'],
+              region: 'Europe',
               images: [
                 schema + game['image_url'],
                 schema + game['image_url_sq_s'],

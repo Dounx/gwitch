@@ -4,8 +4,6 @@ require "algoliasearch"
 
 module Gwitch
   class Region
-
-    # A class which get games from americas eshop.
     class Americas
       CLIENT = Algolia::Client.new(
         application_id: 'U3B6GR4UA3',
@@ -18,10 +16,8 @@ module Gwitch
 
       # Trick for API limitation.
       # Nintendo limit each facet can only get 1000 results.
-      # So we use as much as possible to get results.
+      # So use facets as much as possible to get results.
       # Maybe incompletely got.
-      # DON'T use this directly.
-      # Use filters method.
       FACETS = { 
         generalFilters: ['Deals', 'DLC available', 'Demo available', 'Online Play via Nintendo Switch Online', 'Nintendo Switch Game Voucher'],
         availability: ['New releases', 'Available now', 'Pre-purchase', 'Coming soon'],
@@ -78,8 +74,6 @@ module Gwitch
           hits
         end
 
-        # GalleryParsedError = Class.new
-
         def parse(raw)
           host = 'https://www.nintendo.com'
           microsite_host = 'https://assets.nintendo.com/image/upload/f_auto,q_auto,w_960,h_540'
@@ -132,6 +126,7 @@ module Gwitch
               categories: game['categories'],
               maker: game['publishers']&.join(', '),
               player: game['players'],
+              region: 'Americas',
               images: image_urls,
               url: url,
               release_at: game['releaseDateMask']

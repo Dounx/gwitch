@@ -6,24 +6,16 @@ module Gwitch
   class Game
     IdsExceedMaxError = Class.new(StandardError)
 
+    MAX_IDS = 50
+
     class << self
-      # Get all game or one of them
-      def all(area = nil)
-        case area
-        when 'Americas'
-          Region::Americas.games
-        when 'Asia'
-          Region::Asia.games
-        when 'Europe'
-          Region::Europe.games
-        else
-          Region.games
-        end
+      def all
+        Region.games
       end
 
       # ids can be String or Array
       def price(alpha2, ids, lang = 'en')
-        raise IdsExceedMaxError if ids.is_a?(Array) && ids.size > 50
+        raise IdsExceedMaxError if ids.is_a?(Array) && ids.size > MAX_IDS
 
         api_url = 'https://api.ec.nintendo.com/v1/price'
         queries = {
