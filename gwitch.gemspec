@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
   s.executables = ["gwitch"]
-  s.files = Dir["CHANGELOG.md", "LICENSE", "README.md", "lib/**/*"]
+  s.files = Dir["CHANGELOG.md", "LICENSE", "README.md", "README-zh.md", "lib/**/*"]
 
   s.metadata = {
     "bug_tracker_uri"   => "https://github.com/dounx/gwitch/issues",

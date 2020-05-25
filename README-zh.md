@@ -1,30 +1,30 @@
 # Gwitch
 
-Gwitch can get switch games' info (including price) from Nintendo official API.
+Gwitch 可以获取任天堂 Switch 上的所有游戏信息，包括价格查询以及查询开通了 e-shop 的国家。
 
-[中文说明](README-zh.md) | [RubyGem](https://rubygems.org/gems/gwitch)
+[Readme](README.md) | [RubyGem](https://rubygems.org/gems/gwitch)
 
-## Prerequisites
+## 依赖
 
 * ruby >= 2.3
 
-## Installation
+## 安装
 
 ```bash
 gem install gwitch
 ```
 
-Or you can install via Bundler if you are using Rails. Add this line to your application's Gemfile:
+如果使用 Rails，则可以通过 Bundler 安装。在应用的 Gemfile 中添加：
 
 ```ruby
 gem 'gwitch'
 ```
 
-And then execute:
+然后执行：
 
     $ bundle
 
-## Basic Usage
+## 基本用法
 
 ### Bash
 
@@ -37,11 +37,11 @@ Usage: gwitch [options]
     -h, --help                       Show help
 ```
 
-The returned data will always be in json format.
+所有返回数据都是 JSON 格式。
 
-Can be used with pipes and redirects.
+可以和 Linux 管道以及重定向一起使用。
 
-eg.
+比如：
 
 ```bash
 gwitch -g >> games.json
@@ -53,19 +53,19 @@ gwitch -g >> games.json
 require 'gwitch'
 ```
 
-Get all games.
+获取所有游戏。
 
 ```ruby
 games = Gwitch::Game.all
 ```
 
-Get all avaliable countries.
+获取所有开通了 e-shop 的国家。
 
 ```ruby
 countries = Gwitch::Country.all
 ```
 
-Get country's info.
+获取国家信息。
 
 ```ruby
 country = countries.first
@@ -75,7 +75,7 @@ country.currency   # => 'USD'
 country.avaliable? # => true
 ```
 
-Query games' price (Max 50 games).
+查询游戏价格（最多同时查询 50 个）。
 
 ```ruby
 prices = Gwitch::Game.price('US', 'en', '70010000000141,70010000000142')
@@ -85,7 +85,7 @@ prices = Gwitch::Game.price('US', 'en', ['70010000000141', '70010000000142'])
 prices = Gwitch::Game.price('US', 'en', [70010000000141, 70010000000142])
 ```
 
-## Build
+## 编译
 
 ```bash
 git clone https://github.com/Dounx/gwitch
