@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "gwitch"
   s.version     = Gwitch::VERSION
   s.summary     = "Nintendo switch game API."
-  s.description = "This gem can get switch games info from nintendo official API."
+  s.description = "Gwitch can get switch games info (including price) from nintendo official API."
 
   s.required_ruby_version     = ">= 2.3.0"
 
