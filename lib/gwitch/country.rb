@@ -4,6 +4,8 @@ require "countries"
 require_relative "game"
 
 module Gwitch
+  InvaildAlpha2CodeError = Class.new(StandardError)
+
   class Country
     class << self
       # All avaliable countries
@@ -23,6 +25,7 @@ module Gwitch
 
     def initialize(alpha2)
       @country = ISO3166::Country[alpha2]
+      raise InvaildAlpha2CodeError unless @country
     end
 
     def alpha2

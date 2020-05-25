@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require_relative "../lib/gwitch"
+require_relative "../lib/gwitch/cli"
+
+cli = Gwitch::CLI.new
+
+cli.parse
+
+options = cli.options
+
+if options[:game]
+  puts Gwitch::Game.all.to_json
+elsif options[:price]
+  opts = options[:price]
+  country = Gwitch::Country.new opts[0]
+  nsuids = opts.drop(1).map(&:to_i)
+  puts Gwitch::Game.price(country.alpha2, nsuids.join(',')).to_json
+elsif options[:country]
+  puts Gwitch::Country.all.map(&:alpha2).to_json
+else
+  puts 'Invalid option'
+end

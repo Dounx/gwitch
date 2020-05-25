@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/dounx/gwitch"
 
   s.require_paths = ["lib"]
+  s.executables = ["gwitch"]
   s.files = Dir["CHANGELOG.md", "LICENSE", "README.md", "lib/**/*"]
 
   s.metadata = {
