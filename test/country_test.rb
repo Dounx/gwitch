@@ -9,8 +9,10 @@ class TestCountry < Minitest::Test
   end
 
   def test_avaliable?
-    assert_equal Gwitch::Country.avaliable?('US'), true
-    assert_equal Gwitch::Country.avaliable?('FOO'), false
+    assert_equal Gwitch::Country.new('US').avaliable?, true
+    assert_raises Gwitch::Country::InvaildAlpha2CodeError do
+      assert_equal Gwitch::Country.new('FOO').avaliable?, false
+    end
   end
 
   def test_attributes

@@ -6,7 +6,6 @@ require_relative "../lib/gwitch"
 require_relative "../lib/gwitch/cli"
 
 cli = Gwitch::CLI.new
-
 cli.parse
 
 options = cli.options
@@ -21,5 +20,5 @@ elsif options[:price]
 elsif options[:country]
   puts Gwitch::Country.all.map(&:alpha2).to_json
 else
-  puts 'Invalid option'
+  puts cli.parser
 end

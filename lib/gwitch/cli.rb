@@ -5,7 +5,7 @@ require_relative "version"
 
 module Gwitch
   class CLI
-    attr_reader :options
+    attr_reader :options, :parser
 
     def parse(args = ARGV)
       @options = setup_options(args)
@@ -19,8 +19,8 @@ module Gwitch
 
     def parse_options(argv)
       opts = {}
-      parser = option_parser(opts)
-      parser.parse!(argv)
+      @parser = option_parser(opts)
+      @parser.parse!(argv)
       opts
     end
 

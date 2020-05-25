@@ -4,22 +4,17 @@ require "countries"
 require_relative "game"
 
 module Gwitch
-  InvaildAlpha2CodeError = Class.new(StandardError)
-
   class Country
+    InvaildAlpha2CodeError = Class.new(StandardError)
+
     class << self
       # All avaliable countries
       def all
-        ISO3166::Country.all.map(&:alpha2).select do |alpha2|
-          avaliable?(alpha2)
-        end.map { |alpha2| Country.new(alpha2) }
-      end
+        countries = ISO3166::Country.all.map do |country|
+          Country.new(country.alpha2)
+        end
 
-      def avaliable?(alpha2)
-        # An americas game
-        nsuid = '70010000000141'
-        
-        !Game.price(alpha2, nsuid).nil?
+        countries.select{ |country| country.avaliable? }
       end
     end
 
@@ -38,6 +33,13 @@ module Gwitch
 
     def currency
       @country.currency_code
+    end
+
+    def avaliable?
+      # An americas game
+      nsuid = '70010000000141'
+      
+      !Game.price(alpha2, nsuid).nil?
     end
   end
 end

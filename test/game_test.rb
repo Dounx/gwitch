@@ -12,10 +12,8 @@ class TestGame < Minitest::Test
   end
 
   def test_all
-    assert_equal @games.keys, REGIONS
-    REGIONS.each do |region|
-      refute_empty @games[region]
-    end
+    # Should increase the value in the future
+    assert @games.size > 8000
   end
 
   def test_price
@@ -27,7 +25,7 @@ class TestGame < Minitest::Test
 
   def test_urls
     urls = []
-    @games.values.flatten.each do |game|
+    @games.each do |game|
       urls += game[:images]
       urls << game[:url] if game[:url]
     end
