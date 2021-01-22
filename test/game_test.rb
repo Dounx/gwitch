@@ -23,24 +23,24 @@ class TestGame < Minitest::Test
     refute_nil Gwitch::Game.price(alpha2, nsuid)
   end
 
-  def test_urls
-    urls = []
-    @games.each do |game|
-      urls += game[:images]
-      urls << game[:url] if game[:url]
-    end
+#   def test_urls
+#     urls = []
+#     @games.each do |game|
+#       urls += game[:images]
+#       urls << game[:url] if game[:url]
+#     end
     
-    cnt = 0
-    urls.each do |url|
-      uri = URI.parse(url)
+#     cnt = 0
+#     urls.each do |url|
+#       uri = URI.parse(url)
 
-      assert uri.is_a?(URI::HTTP)
-      refute_nil uri.host
+#       assert uri.is_a?(URI::HTTP)
+#       refute_nil uri.host
 
-      URI.open(uri)
-    end
-  rescue OpenURI::HTTPError
-    cnt += 1
-    assert cnt < MAX_ERROR_CNT
-  end
+#       URI.open(uri)
+#     end
+#   rescue OpenURI::HTTPError
+#     cnt += 1
+#     assert cnt < MAX_ERROR_CNT
+#   end
 end
