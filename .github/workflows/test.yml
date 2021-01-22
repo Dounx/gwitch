@@ -5,6 +5,7 @@ on: [push, pull_request]
 jobs:
   test:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
         ruby: ['2.6', '2.7', '3.0']
