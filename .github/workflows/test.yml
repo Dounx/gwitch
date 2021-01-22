@@ -1,0 +1,21 @@
+name: Test
+
+on:[push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        ruby: ['2.6', '2.7', '3.0']
+    runs-on: ${{ matrix.os }}
+    gemfile: [algoliasearch countries]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - name: Run tests
+      run: bundle exec rake test
